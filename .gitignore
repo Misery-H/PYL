@@ -1,2 +1,7 @@
 .ipynb*/
 __pycache__/
+.*/
+*.svg
+*.jpg
+*.png
+*.off

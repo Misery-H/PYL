@@ -12,7 +12,7 @@ from math import sqrt, sin, cos, acos, atan2
 
 def add(*vectors):
     return tuple(map(sum,zip(*vectors)))
-    
+
 def subtract(v1,v2):
     return tuple(v1-v2 for (v1,v2) in zip(v1,v2))
 
@@ -37,9 +37,9 @@ def to_cartesian(polar_vector):
     length, angle = polar_vector[0], polar_vector[1]
     return (length*cos(angle), length*sin(angle))
 
-def rotate(angle, vectors):
-    polars = [to_polar(v) for v in vectors]
-    return [to_cartesian((l, a+angle)) for l,a in polars]
+def rotate2d(angle, vector):
+    l,a = to_polar(vector)
+    return to_cartesian((l, a+angle))
 
 def translate(translation, vectors):
     return [add(translation, v) for v in vectors]
@@ -65,3 +65,7 @@ def component(v,direction):
 
 def unit(v):
     return scale(1./length(v), v)
+
+def linear_combination(scalars,*vectors):
+    scaled = [scale(s,v) for s,v in zip(scalars,vectors)]
+    return add(*scaled)
